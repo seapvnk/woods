@@ -1,12 +1,6 @@
-class Player {
+class Player extends Creature {
     constructor(screen) {
-        this.screen = screen
-
-        this.element = Element('div', 'player')
-        this.element.style.transform = 'scale(0.4)'
-        
-        this.height = 75
-        this.width = 50
+        super(screen, 'player')
 
         this.xMovement = 0
         this.yMovement = 0
@@ -19,7 +13,7 @@ class Player {
         this.x = 360
         this.y = 330
 
-        this.hp = 250
+        this.hp = 4
     }
 
     setWeapeonObject() {
@@ -46,7 +40,29 @@ class Player {
             this.weapeonObject.style.left = `${this.x + 5}px`
             this.weapeonObject.style.bottom = `${this.y - 40}px`
         }
-        
+    }
+
+    attack(e) {
+        if (this.weapeon === 0 && !this._slashRender) {
+            this.slashAtack = 1
+            const slash = Element('div', 'slash')
+            slash.position = 'absolute'
+            slash.style.transform = 'scale(0.8)'
+            slash.style.left = `${this.x + 15}px`
+            slash.style.bottom = `${this.y - 15}px`
+            
+            if (e.clientX <= this.x + this.width * 6) {
+                slash.style.transform += ' rotate(180deg)'
+                slash.style.left = `${this.x + 15}px`
+                slash.style.bottom = `${this.y - 85}px`
+
+                this.slashAtack = -1
+
+            }
+
+            this.screen.canvas.appendChild(slash)
+            this._slashRender = slash
+        }
     }
 
     handleKeyUp(key) {
@@ -77,10 +93,6 @@ class Player {
             }
         }
 
-        const [w, a, s, d] = 'xyxy'.split('').map((axis, index) => {
-            handleMovement(axis, -1)
-        })
-
         const keyHandle = {
             w: handleMovement('y',  1),
             a: handleMovement('x', -1),
@@ -93,38 +105,26 @@ class Player {
         
     }
 
-    move() {
-        if (this.xMovement === -1 && this.x > 0) {
-            this.x += this.xMovement * this.speed
-        } else if (this.xMovement === 1 && this.x + this.width < this.screen.width) {
-            this.x += this.xMovement * this.speed
+    animation() {
+        super.animation()
+
+        if (this._animationCounter === undefined || this._animationCounter > 1000) {
+            this._animationCounter = 0
         }
 
-        if (this.yMovement === -1 && this.y > 0 + this.height) {
-            this.y += this.yMovement * this.speed
-        } else if (this.yMovement === 1 && this.y < 0 + this.screen.height - 17) {
-            // 17 is hat size :^)
-            this.y += this.yMovement * this.speed
+        if (this._animationCounter % 2 === 0) {
+            if (this._slashRender !== undefined) {
+                try {
+                    this.screen.canvas.removeChild(this._slashRender)
+                } catch (e) {
+                    this._slashRender = null
+                }
+                this.slashAtack = 0
+            }
         }
 
         this.updateWeapeonObject()
+        this._animationCounter++
     }
 
-    set x(x) {
-        this._x = x
-        this.element.style.left = `${this._x}px`
-    }
-
-    set y(y) {
-        this._y = y
-        this.element.style.bottom = `${this._y}px`
-    }
-
-    get x() {
-        return this._x
-    }
-
-    get y() {
-        return this._y
-    }
 }
