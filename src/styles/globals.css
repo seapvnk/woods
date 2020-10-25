@@ -1,0 +1,42 @@
+body {
+    background-color: #1e1e32;
+}
+
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+    text-align: center;
+}
+
+[s-woods]::before {
+    content: "";
+    position: absolute;
+    bottom: 250px;
+    left: calc(50% - 400px);
+    background-color: #37966455;
+    
+    width: 800px;
+    height: 500px;
+}
+
+[s-woods] {
+    margin: auto;
+    background-color: #379664;
+    position: relative;
+    border-radius: 50%;
+}
+
+.icons {
+    width: 100px;
+    height: 50px;
+    padding: 4px;
+    display: flex;
+    opacity: .9;
+}
+
+.weapeon-icon {
+    background: #000;
+    width: 50px;
+    height: 50px;
+    font-size: 36px;
+}
