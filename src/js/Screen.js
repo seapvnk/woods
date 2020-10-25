@@ -17,6 +17,4 @@ class Screen {
         this.selectionMenu = new WeapeonSelection(weapeon).render()
         this.canvas.appendChild(this.selectionMenu)
     }
-
-
 }
