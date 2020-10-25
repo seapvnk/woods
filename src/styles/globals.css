@@ -1,9 +1,9 @@
 body {
     background-color: #1e1e32;
+    font-family: 'Press Start 2P', cursive;
 }
 
 h1 {
-    font-family: 'Courier New', Courier, monospace;
     color: #fff;
     text-align: center;
 }
