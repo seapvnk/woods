@@ -18,6 +18,8 @@ class Player {
 
         this.x = 360
         this.y = 330
+
+        this.hp = 250
     }
 
     setWeapeonObject() {
@@ -28,6 +30,8 @@ class Player {
             this.weapeonObject.classList.remove('axe')
             this.weapeonObject.classList.add('shotgun')
         }
+
+        this.screen.setWeapeonSelection(this.weapeon)
     }
 
     updateWeapeonObject() {
