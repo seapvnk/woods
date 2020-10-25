@@ -1,0 +1,13 @@
+.slash {
+    position: absolute;
+    animation: slash 1s infinite;
+    -webkit-animation: slash 1s infinite;
+    -moz-animation: slash 1s infinite;
+    -o-animation: slash 1s infinite;
+  }
+  
+  @keyframes slash {
+  0%, 100%{
+    box-shadow: 30px 10px 0 0 rgba(240,240,255,1), 40px 10px 0 0 rgba(240,240,255,1), 50px 10px 0 0 rgba(240,240,255,1), 60px 10px 0 0 rgba(125,125,150,1), 50px 20px 0 0 rgba(240,240,255,1), 60px 20px 0 0 rgba(240,240,255,1), 70px 20px 0 0 rgba(125,125,150,1), 60px 30px 0 0 rgba(240,240,255,1), 70px 30px 0 0 rgba(125,125,150,1), 70px 40px 0 0 rgba(240,240,255,1), 80px 40px 0 0 rgba(125,125,150,1), 70px 50px 0 0 rgba(240,240,255,1), 80px 50px 0 0 rgba(125,125,150,1), 60px 60px 0 0 rgba(240,240,255,1), 70px 60px 0 0 rgba(125,125,150,1), 80px 60px 0 0 rgba(125,125,150,1), 50px 70px 0 0 rgba(240,240,255,1), 60px 70px 0 0 rgba(240,240,255,1), 70px 70px 0 0 rgba(125,125,150,1), 20px 80px 0 0 rgba(240,240,255,1), 30px 80px 0 0 rgba(240,240,255,1), 40px 80px 0 0 rgba(240,240,255,1), 50px 80px 0 0 rgba(240,240,255,1), 60px 80px 0 0 rgba(125,125,150,1);height: 10px; width: 10px;
+    }
+  }

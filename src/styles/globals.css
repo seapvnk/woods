@@ -40,3 +40,11 @@ h1 {
     height: 50px;
     font-size: 36px;
 }
+
+.slash {
+    opacity: .9;
+}
+
+.heart {
+    opacity: .8;
+}

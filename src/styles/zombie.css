@@ -4,6 +4,11 @@
     -webkit-animation: zombie 1s infinite;
     -moz-animation: zombie 1s infinite;
     -o-animation: zombie 1s infinite;
+    filter: hue-rotate(50deg);
+  }
+  
+  .hurted {
+    filter: hue-rotate(-210deg);
   }
   
   @keyframes zombie {
