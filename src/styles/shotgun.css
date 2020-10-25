@@ -1,0 +1,13 @@
+.shotgun {
+    position: absolute;
+    animation: shotgun 1s infinite;
+    -webkit-animation: shotgun 1s infinite;
+    -moz-animation: shotgun 1s infinite;
+    -o-animation: shotgun 1s infinite;
+  }
+  
+  @keyframes shotgun {
+  0%, 100%{
+    box-shadow: 180px 20px 0 0 rgba(30,30,50,1), 70px 30px 0 0 rgba(125,125,150,1), 80px 30px 0 0 rgba(125,125,150,1), 90px 30px 0 0 rgba(125,125,150,1), 100px 30px 0 0 rgba(125,125,150,1), 110px 30px 0 0 rgba(125,125,150,1), 120px 30px 0 0 rgba(125,125,150,1), 130px 30px 0 0 rgba(125,125,150,1), 140px 30px 0 0 rgba(125,125,150,1), 150px 30px 0 0 rgba(125,125,150,1), 160px 30px 0 0 rgba(125,125,150,1), 170px 30px 0 0 rgba(125,125,150,1), 180px 30px 0 0 rgba(125,125,150,1), 50px 40px 0 0 rgba(125,125,150,1), 60px 40px 0 0 rgba(125,125,150,1), 70px 40px 0 0 rgba(125,125,150,1), 80px 40px 0 0 rgba(125,125,150,1), 90px 40px 0 0 rgba(30,30,50,1), 100px 40px 0 0 rgba(30,30,50,1), 110px 40px 0 0 rgba(125,125,150,1), 120px 40px 0 0 rgba(125,125,150,1), 130px 40px 0 0 rgba(125,125,150,1), 140px 40px 0 0 rgba(125,125,150,1), 150px 40px 0 0 rgba(125,125,150,1), 160px 40px 0 0 rgba(125,125,150,1), 170px 40px 0 0 rgba(125,125,150,1), 180px 40px 0 0 rgba(125,125,150,1), 50px 50px 0 0 rgba(125,125,150,1), 60px 50px 0 0 rgba(90,60,60,1), 70px 50px 0 0 rgba(125,125,150,1), 80px 50px 0 0 rgba(70,70,90,1), 90px 50px 0 0 rgba(70,70,90,1), 100px 50px 0 0 rgba(70,70,90,1), 110px 50px 0 0 rgba(90,60,60,1), 120px 50px 0 0 rgba(90,60,60,1), 130px 50px 0 0 rgba(90,60,60,1), 140px 50px 0 0 rgba(90,60,60,1), 150px 50px 0 0 rgba(70,70,90,1), 160px 50px 0 0 rgba(70,70,90,1), 170px 50px 0 0 rgba(70,70,90,1), 180px 50px 0 0 rgba(70,70,90,1), 40px 60px 0 0 rgba(90,60,60,1), 50px 60px 0 0 rgba(90,60,60,1), 60px 60px 0 0 rgba(90,60,60,1), 70px 60px 0 0 rgba(70,70,90,1), 110px 60px 0 0 rgba(90,60,60,1), 120px 60px 0 0 rgba(90,60,60,1), 130px 60px 0 0 rgba(90,60,60,1), 140px 60px 0 0 rgba(90,60,60,1), 10px 70px 0 0 rgba(90,60,60,1), 20px 70px 0 0 rgba(90,60,60,1), 30px 70px 0 0 rgba(90,60,60,1), 40px 70px 0 0 rgba(90,60,60,1), 50px 70px 0 0 rgba(90,60,60,1), 60px 70px 0 0 rgba(90,60,60,1), 10px 80px 0 0 rgba(90,60,60,1), 20px 80px 0 0 rgba(90,60,60,1), 30px 80px 0 0 rgba(90,60,60,1), 40px 80px 0 0 rgba(90,60,60,1), 50px 80px 0 0 rgba(90,60,60,1), 60px 80px 0 0 rgba(90,60,60,1), 10px 90px 0 0 rgba(90,60,60,1), 20px 90px 0 0 rgba(90,60,60,1);height: 10px; width: 10px;
+    }
+  }
