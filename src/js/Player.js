@@ -13,7 +13,32 @@ class Player extends Creature {
         this.x = 360
         this.y = 330
 
-        this.hp = 4
+        this.hp = 5
+
+        this.bullets = 2
+        this.score = 0
+    }
+
+    renderBullets() {
+        if (this._lastBulletSlotRendered) {
+            this.screen.canvas.removeChild(this._lastBulletSlotRendered)
+        }
+
+        const bulletsSlot = Element('div', '')
+        bulletsSlot.style.display = 'absolute'
+        bulletsSlot.style.left = `${this.x - (16 * Math.floor(this.hp / 2) / 2)}px`
+        bulletsSlot.style.bottom = `${this.y + 54}px`
+        
+        for(let i = 0; i < this.bullets; i++) {
+            const bullet = Element('div', 'bullet')
+            bullet.style.transform = 'scale(0.2)'
+            bullet.style.marginLeft = `${i * 16}px`
+    
+            bulletsSlot.appendChild(bullet)
+        }
+
+        this._lastBulletSlotRendered = bulletsSlot
+        this.screen.canvas.appendChild(this._lastBulletSlotRendered)
     }
 
     setWeapeonObject() {
@@ -42,26 +67,51 @@ class Player extends Creature {
         }
     }
 
-    attack(e) {
+    handleAttack(e) {
         if (this.weapeon === 0 && !this._slashRender) {
-            this.slashAtack = 1
+            this.attack = 1
             const slash = Element('div', 'slash')
+
             slash.position = 'absolute'
             slash.style.transform = 'scale(0.8)'
             slash.style.left = `${this.x + 15}px`
             slash.style.bottom = `${this.y - 15}px`
+
             
             if (e.clientX <= this.x + this.width * 6) {
                 slash.style.transform += ' rotate(180deg)'
                 slash.style.left = `${this.x + 15}px`
                 slash.style.bottom = `${this.y - 85}px`
 
-                this.slashAtack = -1
+                this.attack = -1
 
             }
 
             this.screen.canvas.appendChild(slash)
-            this._slashRender = slash
+            this._attackRender = slash
+
+        } else if (this.weapeon === 1 && !this._slashRender && this.bullets > 0) {
+            this.attack = 2
+            this.bullets--
+
+            const shoot = Element('div', 'shoot')
+            shoot.position = 'absolute'
+            shoot.style.transform = 'scale(0.8)'
+            shoot.style.left = `${this.x + 15}px`
+            shoot.style.bottom = `${this.y + 5}px`
+            
+            if (e.clientX <= this.x + this.width * 6) {
+                shoot.style.transform += ' rotate(180deg)'
+                shoot.style.left = `${this.x + 15}px`
+                shoot.style.bottom = `${this.y - 105}px`
+
+                this.attack = -2
+
+            }
+
+            this.screen.canvas.appendChild(shoot)
+            this._attackRender = shoot
+
         }
     }
 
@@ -108,21 +158,30 @@ class Player extends Creature {
     animation() {
         super.animation()
 
+        if (this.score >= 80) {
+            player.element.classList.remove('player')
+            player.element.classList.add('player-2')
+        }
+
         if (this._animationCounter === undefined || this._animationCounter > 1000) {
             this._animationCounter = 0
         }
 
-        if (this._animationCounter % 2 === 0) {
-            if (this._slashRender !== undefined) {
+        if (this._animationCounter % 3 === 0) {
+            if (this._attackRender) {
                 try {
-                    this.screen.canvas.removeChild(this._slashRender)
+                    this.screen.canvas.removeChild(this._attackRender)
                 } catch (e) {
-                    this._slashRender = null
+                    this._attackRender = null
                 }
-                this.slashAtack = 0
+                this.attack = 0
             }
+            document.querySelectorAll('.shoot').forEach(c => this.screen.canvas.removeChild(c))
+            document.querySelectorAll('.slash').forEach(c => this.screen.canvas.removeChild(c))
+
         }
 
+        this.renderBullets()
         this.updateWeapeonObject()
         this._animationCounter++
     }

@@ -5,6 +5,7 @@ class Zombie extends Creature {
         this.speed = 5
         this.y = 100
         this.target = target
+        this.level = 1
     }
 
     getDistanceFromTarget(position = null) {
@@ -29,7 +30,7 @@ class Zombie extends Creature {
 
     moveToTarget() {
         const distance = this.getDistanceFromTarget()
-        const pursuitMode = 200 > distance
+        const pursuitMode = 240 > distance
         
         if (pursuitMode) {
             this.follow(this.target.x, this.target.y)
@@ -45,43 +46,64 @@ class Zombie extends Creature {
         }
     }
 
+    dropItem() {
+        const drop = Math.random() * 100
+        if (drop < 30) {
+            this.target.bullets++
+        }
+    }
 
     animation() {
         super.animation()
 
-        if (this._animationCounter === undefined || this._animationCounter > 1000) {
-            this._animationCounter = 0
+        if (this.level > 2) {
+            this.element.classList.remove('zombie')
+            this.element.classList.add('zombie-2')
         }
 
-        this.moveToTarget()
+        if (this.hp > 0) {
+            this.element.style.display = 'initial'
+            if (this._animationCounter === undefined || this._animationCounter > 1000) {
+                this._animationCounter = 0
+            }
+    
+            this.moveToTarget()
+    
+            const distance = this.getDistanceFromTarget()
+    
+            const attack = this.target.attack
+            const targetX = this.target.x
+            const hitCondition = (attack > 0 && this.x > targetX) || (attack < 0 && this.x <  targetX)
+            const distanceToHit = this.target.weapeon === 0? 80 : 120
 
-        const distance = this.getDistanceFromTarget()
+            if (attack !== 0 && distanceToHit > Math.abs(distance) && hitCondition) {
+                this.hp -= Math.abs(attack)
+                this.x += attack * 50
+                this._hurted = true
 
-        const slashHit = this.target.slashAtack
-        const targetX = this.target.x
-        const hitCondition = (slashHit == 1 && this.x > targetX) || (slashHit == -1 && this.x <  targetX)
-        
-        if (slashHit !== 0 && 80 > Math.abs(distance) && hitCondition) {
-            this.hp--
-            this.x += slashHit * 50
-            this._hurted = true
-        }
-
-        if (40 > Math.abs(distance)) {
-            this.target.hp--
-        }
-
-        if (this._animationCounter % 3 === 0) {
-            this._hurted = false
-        }
-
-        if (this._hurted) {
-            this.element.classList.add('hurted')
-            console.log('ai')
+                if (this.hp <= 0) {
+                    this.dropItem()
+                    this.target.score += 10
+                }
+            }
+    
+            if (40 > Math.abs(distance)) {
+                this.target.hp -= 1
+            }
+    
+            if (this._animationCounter % 3 === 0) {
+                this._hurted = false
+            }
+    
+            if (this._hurted) {
+                this.element.classList.add('hurted')
+            } else {
+                this.element.classList.remove('hurted')
+            }
+    
+            this._animationCounter++
         } else {
-            this.element.classList.remove('hurted')
+            this.element.style.display = 'none'
         }
-
-        this._animationCounter++
     }
 }

@@ -1,6 +1,10 @@
 body {
     background-color: #1e1e32;
     font-family: 'Press Start 2P', cursive;
+    width: 100vw;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
@@ -47,4 +51,35 @@ h1 {
 
 .heart {
     opacity: .8;
+}
+
+h1.gameover {
+    margin-top: 150px;
+    font-size: 4rem;
+}
+
+h2 {
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+
+h2 > span {
+    color: #32c84b;
+}
+
+.death-object {
+    display: none;
+    width: 230px;
+    height: 100vh;
+    
+    bottom: 0px;
+    top: 0px;
+
+    position: fixed !important;
+    background-color: #64284199;
+}
+
+.death-object div {
 }
