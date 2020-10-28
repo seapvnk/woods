@@ -54,7 +54,6 @@ class Zombie extends Creature {
                 this._followTarget = false
             }
         } else {
-            const [min, max] = [this.screen.height, this.screen.width]
             this._followTarget = [Math.random() * (360 - 200) + 200, Math.random() * (360 - 200) + 200]
         }
     }
