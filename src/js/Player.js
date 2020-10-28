@@ -1,6 +1,9 @@
 class Player extends Creature {
     constructor(screen) {
         super(screen, 'player')
+        
+        this.x = 360
+        this.y = 330
 
         this.xMovement = 0
         this.yMovement = 0
@@ -11,10 +14,6 @@ class Player extends Creature {
         this.weapeon  = 0
         this.weapeonObject = this.screen.weapeons.getWeapeon(this.weapeon)
         this.updateWeapeonObject()
-
-        this.x = 360
-        this.y = 330
-
 
         this.bullets = 2
         this.score = 0
@@ -70,7 +69,7 @@ class Player extends Creature {
 
     handleAttack(e) {
         if (this.weapeon === 0 && !this._slashRender) {
-            
+
             this.attack = 1
             const slash = Element('div', 'slash')
 

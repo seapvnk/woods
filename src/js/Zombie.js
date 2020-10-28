@@ -66,6 +66,51 @@ class Zombie extends Creature {
         }
     }
 
+    hurtEffect() {
+        if (this._hurted) {
+            this.element.classList.add('hurted')
+        } else {
+            this.element.classList.remove('hurted')
+        }
+    }
+
+    attackEnemy() {
+        const distanceToEnemy = this.getDistanceFromTarget()
+
+        if (40 > Math.abs(distanceToEnemy)) {
+            this.target.hp -= 1
+            this.target.x += -distanceToEnemy
+            this.target.y += -distanceToEnemy
+        }
+    }
+
+    isEnemyHitting() {
+        const targetX = this.target.x
+        const attack = this.target.attack
+
+        return (attack > 0 && this.x > targetX) || (attack < 0 && this.x <  targetX)
+    }
+
+    handleEnemyAttack() {
+        const attack = this.target.attack
+        console.log(attack)
+        const hitCondition = this.isEnemyHitting()
+        const distanceToEnemy = this.getDistanceFromTarget()
+
+        const distanceToHit = this.target.weapeon === 0? 80 : 120
+        
+        if (attack !== 0 && distanceToHit > Math.abs(distanceToEnemy) && hitCondition) {
+            this.hp -= Math.abs(attack)
+            this._hurted = true
+            this.x += attack * 50
+            
+            if (this.hp <= 0) {
+                this.dropItem()
+                this.target.score += 10
+            }
+        }
+    }
+
     animation() {
         super.animation()
 
@@ -81,42 +126,15 @@ class Zombie extends Creature {
             }
     
             this.moveToTarget()
-    
-            const distance = this.getDistanceFromTarget()
-    
-            const attack = this.target.attack
-            const targetX = this.target.x
-            const hitCondition = (attack > 0 && this.x > targetX) || (attack < 0 && this.x <  targetX)
-            const distanceToHit = this.target.weapeon === 0? 80 : 120
-
-            if (attack !== 0 && distanceToHit > Math.abs(distance) && hitCondition) {
-                this.hp -= Math.abs(attack)
-                this.x += attack * 50
-                this._hurted = true
-
-                if (this.hp <= 0) {
-                    this.dropItem()
-                    this.target.score += 10
-                }
-            }
-    
-            if (40 > Math.abs(distance)) {
-                this.target.hp -= 1
-                this.target.x += -distance
-                this.target.y += -distance
-            }
-    
+            this.attackEnemy()
+            this.hurtEffect()
+            this.handleEnemyAttack()
+            this._animationCounter++
+            
             if (this._animationCounter % 3 === 0) {
                 this._hurted = false
             }
-    
-            if (this._hurted) {
-                this.element.classList.add('hurted')
-            } else {
-                this.element.classList.remove('hurted')
-            }
-    
-            this._animationCounter++
+            
         } else {
             this.element.style.display = 'none'
         }
