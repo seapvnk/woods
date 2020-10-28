@@ -72,22 +72,22 @@ class Player extends Creature {
 
             this.attack = 1
             const slash = Element('div', 'slash')
-
+            
             slash.position = 'absolute'
             slash.style.transform = 'scale(0.8)'
             slash.style.left = `${this.x + 15}px`
             slash.style.bottom = `${this.y - 15}px`
-
+            
             
             if (e.clientX <= this.x + this.width * 6) {
                 slash.style.transform += ' rotate(180deg)'
                 slash.style.left = `${this.x + 15}px`
                 slash.style.bottom = `${this.y - 85}px`
-
+                
                 this.attack = -1
-
+                
             }
-
+            
             this.screen.canvas.appendChild(slash)
             this._attackRender = slash
 
@@ -95,6 +95,7 @@ class Player extends Creature {
 
             this.attack = 2
             this.bullets--
+            this.x -= 15
 
             const shoot = Element('div', 'shoot')
             shoot.position = 'absolute'
