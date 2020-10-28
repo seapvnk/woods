@@ -15,7 +15,7 @@ class Player extends Creature {
         this.weapeonObject = this.screen.weapeons.getWeapeon(this.weapeon)
         this.updateWeapeonObject()
 
-        this.bullets = 2
+        this.bullets = 4
         this.score = 0
     }
 
