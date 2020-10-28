@@ -8,6 +8,19 @@ class Zombie extends Creature {
         this.level = 1
     }
 
+    static getZombieHorde(quantity, positionSeed) {
+        return new Array(quantity).fill(0).map(_ => {
+            const [max, min] = positionSeed
+        
+            const zombie = new Zombie(screen, player)
+        
+            zombie.x = Math.random() * (max - min) + min
+            zombie.y = Math.random() * (max - min) + min
+        
+            return zombie
+        })
+    }
+
     getDistanceFromTarget(position = null) {
         const target = position || this.target
         const distance = Math.sqrt((target.x - this.x) ** 2 + (target.y - this.y) ** 2)

@@ -6,18 +6,7 @@ const title = document.querySelector('h1')
 const screen = new Screen(document.querySelector('[s-woods]'), DIMENSIONS, new WeapeonSelection())
 const player = new Player(screen)
 const death = new Death(screen, player)
-const zombies = new Array(4).fill(0).map(_ => {
-    let [max, min] = DIMENSIONS
-
-    const zombie = new Zombie(screen, player)
-    max += 200
-    min += 200
-
-    zombie.x = Math.random() * (max - min) + min
-    zombie.y = Math.random() * (max - min) + min
-
-    return zombie
-})
+const zombies = Zombie.getZombieHorde(4, DIMENSIONS.map(x => x + 200))
 
 let inGame = true
 
