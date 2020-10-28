@@ -102,6 +102,8 @@ class Zombie extends Creature {
     
             if (40 > Math.abs(distance)) {
                 this.target.hp -= 1
+                this.target.x += -distance
+                this.target.y += -distance
             }
     
             if (this._animationCounter % 3 === 0) {
