@@ -6,6 +6,8 @@ class Player extends Creature {
         this.yMovement = 0
         this.speed = 20
 
+        this.hp = 5
+
         this.weapeon  = 0
         this.weapeonObject = this.screen.weapeons.getWeapeon(this.weapeon)
         this.updateWeapeonObject()
@@ -13,13 +15,12 @@ class Player extends Creature {
         this.x = 360
         this.y = 330
 
-        this.hp = 5
 
         this.bullets = 2
         this.score = 0
     }
 
-    renderBullets() {
+    renderBulletsSlots() {
         if (this._lastBulletSlotRendered) {
             this.screen.canvas.removeChild(this._lastBulletSlotRendered)
         }
@@ -69,6 +70,7 @@ class Player extends Creature {
 
     handleAttack(e) {
         if (this.weapeon === 0 && !this._slashRender) {
+            
             this.attack = 1
             const slash = Element('div', 'slash')
 
@@ -91,6 +93,7 @@ class Player extends Creature {
             this._attackRender = slash
 
         } else if (this.weapeon === 1 && !this._slashRender && this.bullets > 0) {
+
             this.attack = 2
             this.bullets--
 
@@ -111,7 +114,6 @@ class Player extends Creature {
 
             this.screen.canvas.appendChild(shoot)
             this._attackRender = shoot
-
         }
     }
 
@@ -152,7 +154,6 @@ class Player extends Creature {
 
         const keyDown = keyHandle[key]
         keyDown && keyDown(player)
-        
     }
 
     animation() {
@@ -176,12 +177,13 @@ class Player extends Creature {
                 }
                 this.attack = 0
             }
+
             document.querySelectorAll('.shoot').forEach(c => this.screen.canvas.removeChild(c))
             document.querySelectorAll('.slash').forEach(c => this.screen.canvas.removeChild(c))
 
         }
 
-        this.renderBullets()
+        this.renderBulletsSlots()
         this.updateWeapeonObject()
         this._animationCounter++
     }
