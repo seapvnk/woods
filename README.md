@@ -3,6 +3,9 @@
 
 Try game [here](https://seapvnk.github.io/woods/)
 
+<p align="center">
+   <img width="70%" src="./screenshot.png">
+</p>
 
 ## Tutorial
 Use WASD keys to movement character,
