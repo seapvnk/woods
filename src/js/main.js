@@ -16,14 +16,10 @@ screen.canvas.appendChild(screen.selectionMenu)
 screen.canvas.appendChild(player.weapeonObject)
 zombies.forEach(zombie => screen.canvas.appendChild(zombie.element))
 
-window.addEventListener('keydown', e => {
-    player.handleKeyDown(e.key)
-})
-window.addEventListener('keyup', e => {
-    player.handleKeyUp(e.key)
-})
-screen.canvas.addEventListener('click', e => {
-    player.handleAttack(e)
+listenInputs(window, {
+    'keydown': e => player.handleKeyDown(e.key),
+    'keyup': e => player.handleKeyUp(e.key),
+    'click': e => player.handleAttack(e),
 })
 
 setInterval(() => {
