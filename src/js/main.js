@@ -89,5 +89,5 @@ const gameEvolve = (player, zombies) => {
     })
 
     player.hp += player.score / 100
-    player.bullets++
+    player.bullets += 2
 }
