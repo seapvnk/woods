@@ -26,66 +26,10 @@ listenInputs(window, {
 
 setInterval(() => {
     if (inGame) {
-        
-        title.innerHTML = player.score
-        player.animation()
-        zombies.forEach(zombie => zombie.animation())
-
-        if (player.hp <= 0) {
-            inGame = false
-        }
-
-        if (zombies.every(allZombiesDead)) {
-            gameEvolve(player, zombies)
-        }
-
-        death.animate()
-
-
+        gameLoop(title, player, zombies, death)
     } else {
-
-        if (screen.canvas) {
-            body.removeChild(screen.canvas)
-        }
-
-        title.innerHTML = 'GAME OVER'
-        title.classList.add('gameover')
-
-        const score = Element('h2', 'score')
-        score.innerHTML = `your score was: <span>${player.score}</span> <br>`
-        score.innerHTML += 'click here to play again'
-
-        score.addEventListener('click', e => { window.location.reload() })
-
-        
-        body.appendChild(score)
-        body.appendChild(button)
-
+        gameoverScreen(screen, title, player)
     }
-
 }, 100);
 
 
-const allZombiesDead = zombie => zombie.hp <= 0
-
-const gameEvolve = (player, zombies) => {
-
-    zombies.forEach(zombie => {
-        let [max, min] = DIMENSIONS
-
-        max += 200
-        min += 200
-        
-        zombie.level++
-        zombie.hp = 1 + zombie.level
-        zombie.speed += 2
-
-        zombie.x = Math.random() * (max - min) + min
-        zombie.y = Math.random() * (max - min) + min
-
-        return zombie
-    })
-
-    player.hp += player.score / 100
-    player.bullets += 2
-}
