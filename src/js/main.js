@@ -10,7 +10,7 @@ const zombies = Zombie.getZombieHorde(4, DIMENSIONS.map(x => x + 200))
 
 let inGame = true
 
-appendManyTo(screen.canvas,
+Utilities.appendManyTo(screen.canvas,
     death.element,
     player.element,
     screen.selectionMenu,
@@ -18,7 +18,7 @@ appendManyTo(screen.canvas,
     zombies.map(z => z.element)
 )
 
-listenInputs(window, {
+Utilities.listenInputs(window, {
     'keydown': e => player.handleKeyDown(e.key),
     'keyup': e => player.handleKeyUp(e.key),
     'click': e => player.handleAttack(e),
