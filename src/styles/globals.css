@@ -5,7 +5,7 @@ body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 h1 {
@@ -29,6 +29,7 @@ h1 {
     background-color: #379664;
     position: relative;
     border-radius: 50%;
+    overflow: hidden;
 }
 
 .icons {
